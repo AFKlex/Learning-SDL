@@ -1,6 +1,7 @@
 # Eigene defintionen 
 .vscode
-main
+game
+
 
 # Prerequisites
 *.d
