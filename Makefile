@@ -4,14 +4,14 @@
 
 # Compiler settings - Can be customized.
 CC = g++
-CXXFLAGS = -std=c++11 -Wall
-LDFLAGS = -lSDL2 -lGL -lGLEW
+CXXFLAGS = -std=c++11 -Wall -I/usr/include/SDL2/
+LDFLAGS = -L/usr/include/SDL2/ -lSDL2 -lGL -lGLEW -lSDL2_image
 
 # Makefile settings - Can be customized.
 APPNAME = game
 EXT = .cpp
 SRCDIR = ./src
-OBJDIR = .
+OBJDIR = ./obj
 
 ############## Do not change anything from here downwards! #############
 SRC = $(wildcard $(SRCDIR)/*$(EXT))
