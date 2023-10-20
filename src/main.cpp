@@ -47,9 +47,8 @@ bool init(SDL_Window *&ptrWindow, SDL_Surface *&prtScreen, SDL_Renderer *&ptrRen
                 if (ptrRenderer == nullptr) {
                     std::cout << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
 
-                }else{
-                    SDL_SetRenderDrawColor(ptrRenderer, 0xFF,0xFF,0xFF,0xFF);
                 }
+
             }
         }
     return success;
@@ -172,9 +171,33 @@ int main( int argc, char* args[] )
                 }
             }*/
         }
+
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer,texture, nullptr, nullptr);
+
+        SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+         fillRect.x = 0; fillRect.y = 0;
+        SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
+        SDL_RenderFillRect( renderer, &fillRect );
+
+        //Render green outlined quad
+        SDL_Rect outlineRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
+        SDL_SetRenderDrawColor( renderer, 0x00, 0xFF, 0x00, 0xFF );
+        SDL_RenderDrawRect( renderer, &outlineRect );
+
+        //Draw blue horizontal line
+        SDL_SetRenderDrawColor( renderer, 0x00, 0x00, 0xFF, 0xFF );
+        SDL_RenderDrawLine( renderer, 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2 );
+
+        //Draw vertical line of yellow dots
+        SDL_SetRenderDrawColor( renderer, 0xFF, 0xFF, 0x00, 0xFF );
+        for( int i = 0; i < SCREEN_HEIGHT; i += 4 )
+        {
+            SDL_RenderDrawPoint( renderer, SCREEN_WIDTH / 2, i );
+        }
+
         SDL_RenderPresent(renderer);
+
         /*
         SDL_Rect stretchRect;
         stretchRect.x = 0;
