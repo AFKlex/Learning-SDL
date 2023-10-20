@@ -126,18 +126,7 @@ int main( int argc, char* args[] )
     }
 
     loadMedia(texture,renderer);
-    SDL_Surface *currentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
-
-
-
-    // Load sample.png into image
-    SDL_Surface *loadedSurface= IMG_Load("../assets/Loli_pika.jpg");
-    if (loadedSurface == nullptr) {
-        std::cout << "Failed IMG_Load: " << IMG_GetError() << "\n";
-    }else{
-        gKeyPressSurfaces[KEY_PRESS_SURFACE_P] = SDL_ConvertSurface(loadedSurface, screenSurface->format, 0 );
-        SDL_FreeSurface( loadedSurface );
-    }
+    //SDL_Surface *currentSurface = gKeyPressSurfaces[KEY_PRESS_SURFACE_DEFAULT];
 
 
     bool quit =false; 
@@ -183,6 +172,10 @@ int main( int argc, char* args[] )
                 }
             }*/
         }
+        SDL_RenderClear(renderer);
+        SDL_RenderCopy(renderer,texture, nullptr, nullptr);
+        SDL_RenderPresent(renderer);
+        /*
         SDL_Rect stretchRect;
         stretchRect.x = 0;
         stretchRect.y = 0;
@@ -190,6 +183,7 @@ int main( int argc, char* args[] )
         stretchRect.h = SCREEN_HEIGHT;
         SDL_BlitScaled(currentSurface, nullptr, screenSurface, nullptr);
         SDL_UpdateWindowSurface(window);
+        */
         SDL_Delay(10);
     }
 
